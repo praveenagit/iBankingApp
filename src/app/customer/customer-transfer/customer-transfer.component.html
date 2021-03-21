@@ -1,0 +1,80 @@
+<div class="card">
+    <div class="card-header">
+        Transfer
+    </div>
+    <div class="card-body">
+        <form (submit)="transfer()" 
+              [formGroup]="customerTransferForm">
+              <div class="form-group row-mb-2">
+                <label class="col-md-4 col-form-label"
+                        for="fromAcc">From Account</label>
+                <div class="col-md-8">
+                    <select class="form-control"
+                            id="fromAcc"
+                            type="text"
+                            formControlName="fromAcc"
+                            [ngClass]="{'is-invalid': (customerTransferForm.get('fromAcc').touched || customerTransferForm.get('fromAcc').dirty)&& !customerTransferForm.get('fromAcc').valid}">
+                            
+                            <option value="" disabled selected hidden>Select</option>
+                            <option *ngFor='let account of customerAccounts' >
+                                {{account.accountNumber}}
+                            </option>
+                        </select>
+                    <span class="invalid-feedback">
+                        <span *ngIf="customerTransferForm.get('fromAcc').errors?.required">
+                            please select from Account
+                        </span>    
+                    </span>
+                </div>
+                </div>
+        
+                <div class="form-group row-mb-2">
+                    <label class="col-md-4 col-form-label"
+                            for="toAcc">To Account</label>
+                    <div class="col-md-8">
+                        <input class="form-control"
+                                id="toAcc"
+                                type="text"
+                                placeholder="To Account (required)"
+                                formControlName="toAcc"
+                               [ngClass]="{'is-invalid': (customerTransferForm.get('toAcc').touched || customerTransferForm.get('toAcc').dirty)&& !customerTransferForm.get('toAcc').valid}"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="customerTransferForm.get('toAcc').errors?.required">
+                                please select to account
+                            </span>
+                          
+                        </span>
+                    </div>
+                    </div>
+            
+                    <div class="form-group row-mb-2">
+                        <label class="col-md-4 col-form-label"
+                                for="amount"> Amount</label>
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                    id="amount"
+                                    type="text"
+                                    placeholder="amount (required)"
+                                    formControlName="amount"
+                                   [ngClass]="{'is-invalid': (customerTransferForm.get('amount').touched || customerTransferForm.get('amount').dirty)&& !customerTransferForm.get('amount').valid}"/>
+                            <span class="invalid-feedback">
+                                <span *ngIf="customerTransferForm.get('amount').errors?.required">
+                                    please enter amount
+                                </span>
+                            </span>
+                        </div>
+                    </div>   
+            <div class="form-group row-mb-2">   
+                <div class="offset-md-2 col-md-4">
+                <button class="btn btn-outline-primary"
+                            type="submit"
+                            id="transfer"
+                            [title]="customerTransferForm.valid?'save your entered data':'Disabled until form data is valid'"
+                             [disabled]=!customerTransferForm.valid
+                            style="width:120px">Transfer
+                        </button>
+            </div>
+        </div>
+        </form>  
+    </div>
+</div>

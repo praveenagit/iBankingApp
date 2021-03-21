@@ -1,0 +1,81 @@
+<div class="card">
+    <div class="card-header">
+        Get Statement
+    </div>
+    <div class="card-body">
+        <form (submit)="getStatement()" 
+              [formGroup]="customerStatementForm">
+              <div class="form-group row-mb-2">
+                <label class="col-md-4 col-form-label"
+                        for="fromAcc">From Account</label>
+                <div class="col-md-8">
+                    <select class="form-control"
+                            id="fromAccId"
+                            type="text"
+                            formControlName="fromAcc"
+                            [ngClass]="{'is-invalid': (customerStatementForm.get('fromAcc').touched || customerStatementForm.get('fromAcc').dirty)&& !customerStatementForm.get('fromAcc').valid}">
+                            <option value="" disabled selected hidden>Select</option>
+                            <option *ngFor='let account of customerAccounts' >
+                                {{account.accountNumber}}
+                            </option>
+                    </select>
+                    <span class="invalid-feedback">
+                        <span *ngIf="customerStatementForm.get('fromAcc').errors?.required">
+                            please select from Account
+                        </span>    
+                    </span>
+                </div>
+                </div>
+        
+                <div class="form-group row-mb-2">
+                    <label class="col-md-4 col-form-label"
+                            for="fromDate">From Date</label>
+                    <div class="col-md-8">
+                        <input class="form-control"
+                                id="fromDate"
+                                type="text"
+                                bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"
+                                placeholder="From Date (required)"
+                                formControlName="fromDate"
+                              [ngClass]="{'is-invalid': (customerStatementForm.get('fromDate').touched || customerStatementForm.get('fromDate').dirty)&& !customerStatementForm.get('fromDate').valid}"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="customerStatementForm.get('fromDate').errors?.required">
+                                please select from Date
+                            </span>
+                          
+                        </span>
+                       
+                    </div>
+                    </div>
+
+                    <div class="form-group row-mb-2">
+                        <label class="col-md-4 col-form-label"
+                                for="toDate"> To Date</label>
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                    id="toDate"
+                                    type="text"
+                                    bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD'}"
+                                    placeholder="toDate (required)"
+                                    formControlName="toDate"
+                                   [ngClass]="{'is-invalid': (customerStatementForm.get('toDate').touched || customerStatementForm.get('toDate').dirty)&& !customerStatementForm.get('toDate').valid}"/>
+                            <span class="invalid-feedback">
+                                <span *ngIf="customerStatementForm.get('toDate').errors?.required">
+                                    please select to Date
+                                </span>
+                            </span>
+                        </div>
+                    </div>   
+            <div class="form-group row-mb-2">   
+                <div class="offset-md-2 col-md-4">
+                <button class="btn btn-outline-primary"
+                            type="submit"
+                            style="width:200px">Download Statement
+                        </button>
+            </div>
+        </div> 
+        </form>
+        
+    </div>
+</div>
+

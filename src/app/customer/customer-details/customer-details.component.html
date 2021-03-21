@@ -1,0 +1,36 @@
+<div class="card"
+    *ngIf='customer'>
+    <div class="card-header">
+        Details
+    </div>
+    <div class="card-body">
+        <div class='row'>
+            <div class='col-md-8'>
+              <div class='row'>
+                <div class='col-md-4'>Name:</div>
+                <div class='col-md-8'>{{customer.custName}}</div>
+              </div>
+              <div class='row'>
+                <div class='col-md-4'>Id:</div>
+                <div class='col-md-8'>{{customer.custId}}</div>
+              </div>
+              <div class='row'>
+                <div class='col-md-4'>Email:</div>
+                <div class='col-md-8'>{{customer.custEmail}}</div>
+              </div>
+              <div class='row'>
+                <div class='col-md-4'>Contact:</div>
+                <div class='col-md-8'>{{customer.custContact}}</div>
+              </div>
+              <div class='row' >
+                
+                <div class="col text-center">
+                  <button class='btn btn-outline-secondary' 
+                          style='width:80px'
+                          (click)='updateDetails()'>Edit</button>
+                        </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

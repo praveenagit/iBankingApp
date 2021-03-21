@@ -1,0 +1,80 @@
+<div class="card"
+   *ngIf='customer'>
+    <div class="card-header">
+        Update Details
+    </div>
+    <div class="card-body">
+        <form (submit)="update()" 
+              [formGroup]="customerDetailsUpdateForm">
+              <div class="form-group row-mb-2">
+                <label class="col-md-4 col-form-label"
+                        for="customerName">Name</label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                                id="customerName"
+                                placeholder="customerName (required)"
+                                formControlName="customerName" 
+                                value="{{customer.custName}}" 
+                                [ngClass]="{'is-invalid': ( customerDetailsUpdateForm.get('customerName').dirty)&& !customerDetailsUpdateForm.get('customerName').valid}"/>
+                               
+                        <span class="invalid-feedback">
+                            <span *ngIf="customerDetailsUpdateForm.get('customerName').errors?.required">
+                                please enter customer name
+                            </span>  
+                        </span> 
+                </div>
+                </div>
+        
+                <div class="form-group row-mb-2">
+                    <label class="col-md-4 col-form-label"
+                            for="customerEmail">Email</label>
+                    <div class="col-md-8">
+                        <input class="form-control"
+                                id="customerEmail"
+                                type="text"
+                                placeholder="customerEmail (required)"
+                                formControlName="customerEmail"
+                                value="{{customer.custEmail}}"
+                               [ngClass]="{'is-invalid': (customerDetailsUpdateForm.get('customerEmail').dirty)&& !customerDetailsUpdateForm.get('customerEmail').valid}"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="customerDetailsUpdateForm.get('customerEmail').errors?.required">
+                                please enter customer email
+                            </span>
+                          
+                        </span>
+                    </div>
+                    </div>
+            
+                    <div class="form-group row-mb-2">
+                        <label class="col-md-4 col-form-label"
+                                for="phoneNumber"> phoneNumber</label>
+                        <div class="col-md-8">
+                            <input class="form-control"
+                                    id="phoneNumber"
+                                    type="text"
+                                    placeholder="phoneNumber (required)"
+                                    formControlName="phoneNumber"
+                                    value="{{customer.custContact}}"
+                                   [ngClass]="{'is-invalid': (customerDetailsUpdateForm.get('phoneNumber').dirty)&& !customerDetailsUpdateForm.get('phoneNumber').valid}"/>
+                            <span class="invalid-feedback">
+                                <span *ngIf="customerDetailsUpdateForm.get('phoneNumber').errors?.required">
+                                    please enter phone number
+                                </span>
+                            </span>
+                        </div>
+                    </div>   
+            <div class="form-group row-mb-2">   
+                <div class="offset-md-2 col-md-4">
+                <button class="btn btn-outline-primary"
+                            type="submit"
+                            id="Update"
+                            [title]="customerDetailsUpdateForm.valid?'save your entered data':'Disabled until form data is valid'"
+                            [disabled]=customerDetailsUpdateForm.pristine
+                            style="width:120px">Update
+                        </button>
+            </div>
+        </div>
+        </form>  
+   
+    </div>
+</div>
