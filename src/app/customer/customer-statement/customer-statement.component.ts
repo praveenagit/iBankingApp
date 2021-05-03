@@ -16,8 +16,9 @@ export class CustomerStatementComponent implements OnInit {
   AccNo: number;
   fromDate: Date;
   toDate: Date;
-  Message:String;
+  message:String;
   customerAccounts: IBankAccount[];
+  flag:boolean=false;
 
   constructor(private route:ActivatedRoute, 
     private fb: FormBuilder,
@@ -40,10 +41,12 @@ export class CustomerStatementComponent implements OnInit {
     this.fromDate=this.customerStatementForm.get('fromDate').value;
     this.toDate=this.customerStatementForm.get('toDate').value;
     this.custService.getStatement(this.AccNo,this.fromDate,this.toDate).subscribe(data=>{
-      this.Message=JSON.stringify(data);
-      console.log(this.Message);
+      this.message=JSON.stringify(data);
+      console.log(this.message);
 
     });
+    this.flag=true;
+
   }
 }
 

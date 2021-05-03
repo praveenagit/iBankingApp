@@ -9,17 +9,19 @@ export class AuthService {
   
   constructor(private http: HttpClient) { }
 
-  
- 
-
-  loginUser(customerId, password){
+  customerLogin(customerId, password){
     const requestOptions: Object = {
       responseType: 'text'
     }
-
     let loginUrl=`http://localhost:8008/bankapi/api/customer/${customerId}/${password}`;
-
     return this.http.get<any>(loginUrl, requestOptions);
-    
   }
+  employeeLogin(empId, password){
+    const requestOptions: Object = {
+      responseType: 'text'
+    }
+    let loginUrl=`http://localhost:8008/bankapi/api/employee/${empId}/${password}`;
+    return this.http.get<any>(loginUrl, requestOptions);
+  }
+
 }

@@ -27,15 +27,7 @@ export class CustomerDetailsComponent implements OnInit {
         error: err=>this.message=err   
        
     });
-      
-   //console.log(this.customer,this.customerId);
-   /* this.productService.getProductsById(id).subscribe({
-      next: product=>this.product=product,
-      error: err=>this.errorMessage=err   
      
-  });  */ 
-
-
   }
   updateDetails(){
     this.router.navigate(['customer/'+this.customerId+'/updateDetails']);

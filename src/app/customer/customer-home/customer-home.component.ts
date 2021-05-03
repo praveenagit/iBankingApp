@@ -20,9 +20,6 @@ export class CustomerHomeComponent implements OnInit {
   ngOnInit(): void {
 
     this.customerId=this.custService.getCustomerId();
-    /*this.route.paramMap.subscribe( paramMap => {
-      this.customerId = Number(paramMap.get('id'));
-  })*/
     console.log(this.customerId)
     this.custService.getDetails(this.customerId).subscribe({
       next: accounts =>{this.accounts=accounts,
@@ -32,14 +29,6 @@ export class CustomerHomeComponent implements OnInit {
     });
     //console.log(this.accounts);
 
-  }
-  getStatement(){
-    
-  }
-
-  
- 
-
-  
+  }  
 
 }

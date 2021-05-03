@@ -1,0 +1,84 @@
+<div class="card">
+    <div class="card-header">
+        Make Transaction (Withdraw or deposit)
+    </div>
+
+    <div class="card-body">
+        <form (submit)="update()" 
+              [formGroup]="BankerTransactionForm">
+              <div class="form-group row-mb-2">
+                <label class="col-md-4 col-form-label"
+                        for="accountNo">Account Number</label>
+                <div class="col-md-8">
+                    <input class="form-control"
+                                id="accountNo"
+                                placeholder="accountNo (required)"
+                                formControlName="accountNo" 
+                                [ngClass]="{'is-invalid': (BankerTransactionForm.get('accountNo').dirty)&& !BankerTransactionForm.get('accountNo').valid}"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="BankerTransactionForm.get('accountNo').errors?.required">
+                                please enter account number
+                            </span>  
+                        </span> 
+                </div>
+                </div>
+        
+                <div class="form-group row-mb-2">
+                    <label class="col-md-4 col-form-label"
+                            for="amount">Amount</label>
+                    <div class="col-md-8">
+                        <input class="form-control"
+                                id="amount"
+                                type="text"
+                                placeholder="amount (required)"
+                                formControlName="amount"
+                               [ngClass]="{'is-invalid': (BankerTransactionForm.get('amount').dirty)&& !BankerTransactionForm.get('amount').valid}"/>
+                        <span class="invalid-feedback">
+                            <span *ngIf="BankerTransactionForm.get('amount').errors?.required">
+                                please enter amount
+                            </span>
+                          
+                        </span>
+                    </div>
+                    </div>
+            
+                    <div class="form-group row-mb-2">
+                        <label class="col-md-4 col-form-label"
+                                for="transactionType">Transaction type</label>
+                        <div class="col-md-8">
+                            <select class="form-control"
+                            id="transactionType"
+                            type="text"
+                            formControlName="transactionType"
+                            [ngClass]="{'is-invalid': (BankerTransactionForm.get('transactionType').touched || BankerTransactionForm.get('transactionType').dirty)&& !BankerTransactionForm.get('transactionType').valid}">
+                            <option value="" disabled selected hidden>Select</option>
+                            <option value="credit">Credit</option>
+                            <option value="debit">Debit</option>
+                        </select>
+                           <span class="invalid-feedback">
+                                <span *ngIf="BankerTransactionForm.get('transactionType').errors?.required">
+                                    please enter transaction type
+                                </span>
+                            </span>
+                        </div>
+                    </div>   
+            <div class="form-group row-mb-2">   
+                <div class="offset-md-2 col-md-4">
+                <button class="btn btn-outline-primary"
+                            type="submit"
+                            id="Update"
+                            [title]="BankerTransactionForm.valid?'save your entered data':'Disabled until form data is valid'"
+                            [disabled]=BankerTransactionForm.pristine
+                            style="width:120px">Submit
+                        </button>
+            
+                </div>
+                <div class="offset-md-2 col-md-4" *ngIf='flag'>
+                    {{message}}
+                </div>
+        </div>
+        </form>  
+   
+    </div>
+</div>
+

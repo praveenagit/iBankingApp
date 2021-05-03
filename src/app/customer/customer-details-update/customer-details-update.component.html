@@ -1,8 +1,10 @@
 <div class="card"
-   *ngIf='customer'>
+    *ngIf='customer'
+  >
     <div class="card-header">
-        Update Details
+        Update Details 
     </div>
+
     <div class="card-body">
         <form (submit)="update()" 
               [formGroup]="customerDetailsUpdateForm">
@@ -14,9 +16,8 @@
                                 id="customerName"
                                 placeholder="customerName (required)"
                                 formControlName="customerName" 
-                                value="{{customer.custName}}" 
+                                [(ngModel)]=customer.custName
                                 [ngClass]="{'is-invalid': ( customerDetailsUpdateForm.get('customerName').dirty)&& !customerDetailsUpdateForm.get('customerName').valid}"/>
-                               
                         <span class="invalid-feedback">
                             <span *ngIf="customerDetailsUpdateForm.get('customerName').errors?.required">
                                 please enter customer name
@@ -34,7 +35,7 @@
                                 type="text"
                                 placeholder="customerEmail (required)"
                                 formControlName="customerEmail"
-                                value="{{customer.custEmail}}"
+                                [(ngModel)]=customer.custEmail
                                [ngClass]="{'is-invalid': (customerDetailsUpdateForm.get('customerEmail').dirty)&& !customerDetailsUpdateForm.get('customerEmail').valid}"/>
                         <span class="invalid-feedback">
                             <span *ngIf="customerDetailsUpdateForm.get('customerEmail').errors?.required">
@@ -54,7 +55,7 @@
                                     type="text"
                                     placeholder="phoneNumber (required)"
                                     formControlName="phoneNumber"
-                                    value="{{customer.custContact}}"
+                                    [(ngModel)]=customer.custContact
                                    [ngClass]="{'is-invalid': (customerDetailsUpdateForm.get('phoneNumber').dirty)&& !customerDetailsUpdateForm.get('phoneNumber').valid}"/>
                             <span class="invalid-feedback">
                                 <span *ngIf="customerDetailsUpdateForm.get('phoneNumber').errors?.required">
@@ -72,7 +73,11 @@
                             [disabled]=customerDetailsUpdateForm.pristine
                             style="width:120px">Update
                         </button>
-            </div>
+            
+                </div>
+                <div class="offset-md-2 col-md-4" *ngIf='flag'>
+                    {{message}}
+                </div>
         </div>
         </form>  
    

@@ -1,0 +1,12 @@
+<div style="width: 30%; float:left">
+<ul>
+    <li><a [routerLink]="['employeeHome']">Home
+      <!-- <span class="sr-only">(current)</span> -->
+    </a></li>
+    <li><a [routerLink]="['transaction']">Transaction</a></li>
+    <li><a [routerLink]="['']">Logout</a></li>
+  </ul>
+</div>
+<div class="container" style="width: 75%; float:right">
+    <router-outlet></router-outlet>
+</div>

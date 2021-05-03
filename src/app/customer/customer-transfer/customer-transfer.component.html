@@ -17,7 +17,7 @@
                             
                             <option value="" disabled selected hidden>Select</option>
                             <option *ngFor='let account of customerAccounts' >
-                                {{account.accountNumber}}
+                                {{account.accountNumber}} - {{account.accountType}}
                             </option>
                         </select>
                     <span class="invalid-feedback">
@@ -73,6 +73,9 @@
                              [disabled]=!customerTransferForm.valid
                             style="width:120px">Transfer
                         </button>
+            </div>
+            <div class="offset-md-2 col-md-4">
+                {{message}}
             </div>
         </div>
         </form>  

@@ -9,14 +9,12 @@ import { IBankAccount } from '../model/BankAccount';
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit {
-  
-
   customerId: number;
   @Input() 
   public accounts: IBankAccount[];
   errMsg: string;
   
-  constructor( private route: ActivatedRoute,private custService:CustomerserviceService) {
+  constructor( private route: ActivatedRoute,private custService:CustomerserviceService, private router: Router) {
    
         
    }
@@ -31,11 +29,7 @@ export class CustomerComponent implements OnInit {
       error: err => this.errMsg=err
 
     });
-    //this.customerId=+this.route.snapshot.paramMap.get('id');
-    //console.log(this.customerId);
+   
   }
- 
-
-
   
 }

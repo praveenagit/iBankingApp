@@ -70,8 +70,13 @@
                 <div class="offset-md-2 col-md-4">
                 <button class="btn btn-outline-primary"
                             type="submit"
+                            [title]="customerStatementForm.valid?'get Statement':'Disabled until form data is valid'"
+                            [disabled]=!customerStatementForm.valid
                             style="width:200px">Download Statement
                         </button>
+            </div>
+            <div class="offset-md-2 col-md-4" *ngIf='flag'>
+                {{message}}
             </div>
         </div> 
         </form>

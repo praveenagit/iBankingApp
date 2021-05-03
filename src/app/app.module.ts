@@ -19,7 +19,10 @@ import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { DatePipe } from '@angular/common';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
-import {CustomerDetailsUpdateComponent} from './customer/customer-details-update/customer-details-update.component'
+import {CustomerDetailsUpdateComponent} from './customer/customer-details-update/customer-details-update.component';
+import { EmployeeComponent } from './employee/employee.component'
+import {BankertransactionComponent} from './employee/bankertransaction/bankertransaction.component'
+import {EmployeeHomeComponent} from './employee/employee-home/employee-home.component'
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import {CustomerDetailsUpdateComponent} from './customer/customer-details-update
     CustomerOnLoadComponent,
     CustomerStatementComponent,
     CustomerDetailsComponent,
-    CustomerDetailsUpdateComponent
+    CustomerDetailsUpdateComponent,
+    EmployeeComponent,
+    BankertransactionComponent,
+    EmployeeHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +54,12 @@ import {CustomerDetailsUpdateComponent} from './customer/customer-details-update
       {path: 'register', component: RegisterComponent  },
       {path: '', component: HomeComponent },
       {path: 'customer/:id', component: CustomerOnLoadComponent},
+      {path: 'employee/:id', component: EmployeeComponent,
+      children: [
+       {path:'transaction',component: BankertransactionComponent,pathMatch:'full'},
+       {path:'employeeHome', component: EmployeeHomeComponent, pathMatch: 'full' }
+       ]
+    },
       {path: 'customer/:id', component: CustomerComponent,
       children: [
         {path:'updateDetails',component: CustomerDetailsUpdateComponent,pathMatch:'full'},

@@ -16,16 +16,16 @@ export class CustomerTransferComponent implements OnInit {
   fromAcc: number;
   toAcc: number;
   amount: number;
-  Message:String;
+  message:String;
   customerAccounts: IBankAccount[];
+  fromAcc1:String;
 
   constructor(private route:ActivatedRoute, 
     private fb: FormBuilder,
     private custService: CustomerserviceService,
-    private customerAcc: CustomerComponent) { 
-      
+    private customerAcc: CustomerComponent) {  
     }
-
+    
   ngOnInit(): void {
     this.customerAccounts=this.customerAcc.accounts;
     console.log(this.customerAccounts);
@@ -33,20 +33,19 @@ export class CustomerTransferComponent implements OnInit {
       fromAcc:['',[Validators.required]],
       toAcc: ['',[Validators.required]],
       amount:['',Validators.required]  
-    });
-    
+    });  
   }
-
-
   transfer(){
+    
+     this.fromAcc1=this.customerTransferForm.get('fromAcc').value;
+     this.fromAcc1=(this.fromAcc1.substring(0,this.fromAcc1.indexOf("-"))).trim();
 
-    this.fromAcc=this.customerTransferForm.get('fromAcc').value;
+     this.fromAcc=Number (this.fromAcc1);
     this.toAcc=this.customerTransferForm.get('toAcc').value;
     this.amount=this.customerTransferForm.get('amount').value;
     this.custService.transfer(this.fromAcc,this.toAcc,this.amount).subscribe(data=>{
-      this.Message=JSON.stringify(data);
-      console.log(this.Message);
-
+      this.message=data;
+      console.log(this.message);
     });
   }
 

@@ -1,7 +1,7 @@
 import { state } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {AuthService} from '../auth.service'
+import { AuthService } from '../auth.service'
 import { Customer } from '../model/customer';
 
 @Component({
@@ -14,34 +14,56 @@ export class HomeComponent implements OnInit {
   isAuthenticated: Boolean;
   customer: Customer;
   errorMessage: string;
-  customerId:number;
+  customerId: number;
+  employeeId: number;
 
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
   }
-  loginUser(event){
+  customerLogin(event) {
     event.preventDefault()
-    const target=event.target
-    this.customerId=target.querySelector('#customerId').value
-    const password=target.querySelector('#password').value
-    this.auth.loginUser(this.customerId,password).subscribe(
+    const target = event.target
+    this.customerId = target.querySelector('#customerId').value
+    const password = target.querySelector('#password').value
+    this.auth.customerLogin(this.customerId, password).subscribe(
       (res) => {
-          console.log(res);
-          //this.isAuthenticated=res;
-          if(res==="login success")
-            this.router.navigate(['customer',this.customerId] );
-          else
-            //this.router.navigate(['']);
-            alert(res);
+        console.log(res);
+        //this.isAuthenticated=res;
+        if (res === "login success")
+          this.router.navigate(['customer/', this.customerId+'/home']);
+        else
+          //this.router.navigate(['']);
+          alert(res);
       },
-     (err) =>this.errorMessage=err
+      (err) => this.errorMessage = err
     );
 
 
   }
-  getCustomerId(){
+  employeeLogin(event) {
+    event.preventDefault()
+    const target = event.target
+    this.employeeId = target.querySelector('#employeeId').value
+    const password = target.querySelector('#password').value
+    this.auth.employeeLogin(this.employeeId, password).subscribe(
+      (res) => {
+        console.log(res);
+        //this.isAuthenticated=res;
+        if (res === "login success")
+          this.router.navigate(['employee/' + this.employeeId + '/employeeHome'])
+        // this.router.navigate(['employee',this.employeeId] );
+        else
+          //this.router.navigate(['']);
+          alert(res);
+      },
+      (err) => this.errorMessage = err
+    );
+
+  }
+  getCustomerId() {
     return this.customerId;
   }
+
 }
