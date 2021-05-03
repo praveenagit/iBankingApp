@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
         console.log(res);
         //this.isAuthenticated=res;
         if (res === "login success")
-          this.router.navigate(['customer/', this.customerId+'/home']);
+          //this.router.navigate(['customer/', this.customerId ]);
+          this.router.navigate(['customer/'+this.customerId+'/home'])
         else
           //this.router.navigate(['']);
           alert(res);
